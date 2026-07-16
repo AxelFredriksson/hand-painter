@@ -3,6 +3,8 @@ FRAME_WIDTH=1280
 FRAME_HEIGHT=720
 
 # MediaPipe
+MODEL_PATH="/home/fredr/Projects/hand_painter/models/hand_landmarker.task"
+FRAME_RATE=30 # fps
 MAX_NUM_HANDS=1
 MIN_DETECTION_CONFIDENCE=0.7 # how confident the model needs to be to detect a new hand
 MIN_TRACKING_CONFIDENCE=0.5 # same type of confidence-treshold, but for detecting a hand between frames

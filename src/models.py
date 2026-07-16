@@ -4,15 +4,15 @@ from typing import Optional
 
 @dataclass
 class Point:
-    y: float
     x: float
+    y: float
     z: float = 0
     
     
 @dataclass
 class HandLandmarks:
     points: list[Point]
-    handeness: str
+    handedness: str
     confidence: float
     
     
