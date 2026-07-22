@@ -3,7 +3,7 @@ FRAME_WIDTH=1280
 FRAME_HEIGHT=720
 
 # MediaPipe
-MODEL_PATH="/home/fredr/Projects/hand_painter/models/hand_landmarker.task"
+MODEL_PATH="./models/hand_landmarker.task"
 FRAME_RATE=30 # fps
 MAX_NUM_HANDS=1
 MIN_DETECTION_CONFIDENCE=0.7 # how confident the model needs to be to detect a new hand
@@ -14,7 +14,7 @@ LANDMARK_THUMB_TIP=4
 LANDMARK_INDEX_TIP=8
 
 # Gesture
-PINCH_THRESHOLD=0.05 # between 0-1
+PINCH_THRESHOLD=0.06 # between 0-1
 
 # Smoothing
 SMOOTHING_FACTOR=0.5 # 0: max smoothing, 1: no smoothing

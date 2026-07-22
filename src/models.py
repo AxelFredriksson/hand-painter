@@ -27,7 +27,7 @@ class GestureState:
 
 @dataclass (frozen=True)
 class BrushSettings:
-    color: tuple[int, int, int] = (0, 0, 0) 
+    color: tuple[int, int, int] = (255, 0, 0)
     thickness: int = 5
     brush_type: str = "round"
     

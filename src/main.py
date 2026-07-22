@@ -38,6 +38,7 @@ def main():
             continue
         
         frame = cv2.resize(frame, (PANEL_WIDTH, config.FRAME_HEIGHT))
+        frame = cv2.flip(frame, 1)
         landmarks = hand_tracker.process(frame)
         
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -51,6 +52,7 @@ def main():
             canvas.update(gesture_state, brush)
             index_scaled = scale_point(smoothed_fingertip, PANEL_WIDTH, config.FRAME_HEIGHT)
             pygame.draw.circle(camera_surface, color=(255,0,0), center=index_scaled, radius=4)
+            #print(f"is_drawing = {gesture_state.is_drawing} | gesture_name = {gesture_state.gesture_name}")
             
         screen.blit(camera_surface, (0,0))
         screen.blit(canvas.render(), (PANEL_WIDTH, 0))
