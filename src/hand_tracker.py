@@ -18,6 +18,13 @@ def _to_hand_landmarks(hand_landmarks, handedness_category):
         handedness=handedness_category.category_name,
         confidence=handedness_category.score,
     )
+    
+def find_by_handedness(landmarks_list, handedness):
+    for landmarks in landmarks_list:
+        if landmarks.handedness.lower() == handedness.lower():
+            return landmarks
+
+    return None
 
 
 @dataclass
@@ -52,8 +59,13 @@ class HandTracker:
         
         self._frame_count += 1000 / config.FRAME_RATE
 
-        if not result.hand_landmarks: return None
-        return _to_hand_landmarks(result.hand_landmarks[0], result.handedness[0][0])
+        hand_landmarks_list = []
+        for hand_landmarks, handedness in zip(result.hand_landmarks, result.handedness):
+            hand_landmarks_list.append(
+                _to_hand_landmarks(hand_landmarks, handedness[0])
+            )
+
+        return hand_landmarks_list
         
 
     

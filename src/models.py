@@ -18,11 +18,16 @@ class HandLandmarks:
     def get_point(self, index):
         return self.points[index]
     
+    
 @dataclass
 class GestureState:
-    is_drawing: bool
     fingertip: Point
-    gesture_name: str = "none"
+    
+    
+@dataclass
+class ToolState:
+    is_drawing: bool
+    tool_name: str = "none"
     
 
 @dataclass (frozen=True)

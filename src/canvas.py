@@ -1,5 +1,5 @@
 import config
-from models import BrushSettings, GestureState, Point
+from models import BrushSettings, GestureState, Point, ToolState
 from dataclasses import dataclass
 import pygame
 
@@ -21,11 +21,11 @@ class Canvas:
         self._surface = pygame.Surface((self.width, self.height))
         self._surface.fill((255, 255, 255))
 
-    def update(self, gesture_state: GestureState, brush: BrushSettings):
+    def update(self, current_tool: ToolState, gesture_state: GestureState, brush: BrushSettings):
         pixel_coordinates = scale_point(gesture_state.fingertip, self.width, self.height)
         self._cursor_point = pixel_coordinates
         
-        if gesture_state.is_drawing == False:
+        if current_tool.is_drawing == False:
             self._previous_point = None
             return
 

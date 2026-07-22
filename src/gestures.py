@@ -1,18 +1,19 @@
 import config
-from models import GestureState
+from models import GestureState, ToolState
 import math
 
 
 def interpret(landmarks):
-    state = interpret_draw(landmarks)
+    state = interpret_left_hand(landmarks)
     if state:
-       return state
+       pencil = interpret_right_hand(landmarks)
+       return (state, pencil)
    
     index_point = landmarks.get_point(config.LANDMARK_INDEX_TIP)
-    return GestureState(is_drawing=False, fingertip=index_point, gesture_name="none")
+    return (ToolState(is_drawing=False, tool_name = "none"), GestureState(fingertip=index_point))
 
 
-def interpret_draw(landmarks):
+def interpret_left_hand(landmarks):
     thumb_point = landmarks.get_point(config.LANDMARK_THUMB_TIP)
     index_point = landmarks.get_point(config.LANDMARK_INDEX_TIP)
     
@@ -20,6 +21,12 @@ def interpret_draw(landmarks):
     print(f"Distance = {distance}")
     
     if distance < config.PINCH_THRESHOLD:
-        return GestureState(is_drawing=True, fingertip=index_point, gesture_name="pinch")
+        return ToolState(is_drawing=True, tool_name="brush")
     else:
-        return None
+        return ToolState(is_drawing=False, tool_name="none")
+    
+
+def interpret_right_hand(landmarks):
+    index_point = landmarks.get_point(config.LANDMARK_INDEX_TIP)
+    
+    return GestureState(fingertip=index_point)
