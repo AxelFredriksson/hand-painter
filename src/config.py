@@ -1,11 +1,15 @@
+from pathlib import Path
+
 from models import BrushSettings
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 # Camera resolution
 FRAME_WIDTH=1280
 FRAME_HEIGHT=720
 
 # MediaPipe
-MODEL_PATH="./models/hand_landmarker.task"
+MODEL_PATH=str(PROJECT_ROOT / "models" / "hand_landmarker.task")
 FRAME_RATE=30 # fps
 MAX_NUM_HANDS=2
 MIN_DETECTION_CONFIDENCE=0.7 # how confident the model needs to be to detect a new hand

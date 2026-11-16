@@ -70,7 +70,7 @@ class HandTracker:
 
     
 # if __name__ == "__main__":
-#     frame = cv2.imread("/home/fredr/Projects/hand_painter/data/images/hand_1.jpg")
+#     frame = cv2.imread(str(config.PROJECT_ROOT / "data" / "images" / "hand_1.jpg"))
 #     hand_tracker = HandTracker()
 #     result = hand_tracker.process(frame)
 #     print(result)
